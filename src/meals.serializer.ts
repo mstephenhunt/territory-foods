@@ -1,4 +1,4 @@
-import { MealModel, ChefModel } from './models';
+import { MealModel } from './models';
 
 export type SerializedMeal = {
   id: number,
@@ -14,14 +14,14 @@ export type SerializedMeal = {
 /**
  * Takes in a ORM-type Meals/Chef model and serializes for API
  */
-export const MealSerializer = (mealModel: MealModel, chefModel: ChefModel): SerializedMeal => {
+export const MealSerializer = (mealModel: MealModel): SerializedMeal => {
   return {
     id: mealModel.id,
     title: mealModel.title,
     description: mealModel.description,
     img: mealModel.img,
     tags: mealModel.tags,
-    chefName: chefModel.name,
+    chefName: mealModel.chef.name,
     mealTypes: mealModel.mealTypes,
     price: mealModel.price
   }

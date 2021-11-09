@@ -1,6 +1,7 @@
-import { Model, AllowNull, Column, Unique, ForeignKey } from 'sequelize-typescript';
+import { Table, Model, AllowNull, Column, Unique, ForeignKey } from 'sequelize-typescript';
 import { MealTags, MealTypes } from './service';
 
+@Table
 export class MealModel extends Model<MealModel> {
   @Unique
   @AllowNull(false)
@@ -36,7 +37,7 @@ export class MealModel extends Model<MealModel> {
   price!: number;
 }
 
-
+@Table
 export class ChefModel extends Model<ChefModel> {
   @Unique
   @AllowNull(false)

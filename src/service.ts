@@ -1,5 +1,5 @@
-// import { MealSerializer, SerializedMeal } from './meals.serializer';
-// import { MealModel } from './models';
+import { MealSerializer, SerializedMeal } from './meals.serializer';
+import { MealModel } from './models';
 
 export enum MealTags {
   VEGETARIAN = 'VEGETARIAN',
@@ -16,17 +16,26 @@ export enum MealTypes {
   DINNER = 'DINNER'
 }
 
-// type MealFilters = {
-//   tags: MealTags[],
-//   mealTypes: MealTypes[]
-// }
+type MealFilters = {
+  mealTags: string[] | null,
+  mealTypes: string[] | null
+}
 
 /**
  * This method takes in filtering criteria from the get meals endpoint,
  * retuns serialized meals to the requester.
  */
 export class MealService {
-  // public static async getFilteredMeals(): Promise<SerializedMeal> {
+  public static async getFilteredMeals(filters: MealFilters): Promise<SerializedMeal[]> {
+    const meals: MealModel[] = await MealModel.findAll({
+      where: {
+        tags: filters.mealTags,
+        mealTypes: filters.mealTypes
+      }
+    });
 
-  // }
+    return meals.map(meal => {
+      return MealSerializer(meal)
+    });
+  }
 }
