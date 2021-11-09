@@ -1,19 +1,5 @@
 import { Model, AllowNull, Column, Unique, ForeignKey } from 'sequelize-typescript';
-
-enum MealTags {
-  VEGETARIAN = 'VEGETARIAN',
-  VEGAN = 'VEGAN',
-  PALEO = 'PALEO',
-  KETO = 'KETO',
-  MEDITERRANEAN = 'MEDITERRANEAN',
-  MIXITARIAN = 'MIXITARIAN'
-};
-
-enum MealTypes {
-  BREAKFAST = 'BREAKFAST',
-  LUNCH = 'LUNCH',
-  DINNER = 'DINNER'
-}
+import { MealTags, MealTypes } from './service';
 
 export class MealModel extends Model<MealModel> {
   @Unique
