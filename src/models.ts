@@ -43,6 +43,10 @@ export class MealModel extends Model<MealModel> {
 
   @AllowNull(false)
   @Column
+  mealTypes!: MealTypes[]
+
+  @AllowNull(false)
+  @Column
   price!: number;
 }
 
